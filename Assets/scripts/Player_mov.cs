@@ -12,6 +12,7 @@ public class Player_mov : MonoBehaviour
     private Rigidbody2D         body;
     [SerializeField] float      jumpAceleration = 1;
     [SerializeField] float      jumpMaxSpeed = 2;
+    [SerializeField] float      jumpMin = 1;
     private float               currentJumpSpeed = 0;
     private bool                chargingJump = false;
     [SerializeField] LayerMask  groundLayers;
@@ -65,7 +66,7 @@ public class Player_mov : MonoBehaviour
         if (Input.GetButtonUp("Jump") && chargingJump && grounded)
         {
             body.AddForce(Vector2.up * currentJumpSpeed, ForceMode2D.Impulse);
-            currentJumpSpeed = 0;
+            currentJumpSpeed = jumpMin;
             chargingJump = false;
         }
 
