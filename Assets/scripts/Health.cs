@@ -24,6 +24,9 @@ public class Health : MonoBehaviour
             else
                 death();
         }
+
+        if (x < 0 && animator != null)
+            animator.SetTrigger("hurt");
     }
 
     public void death()
