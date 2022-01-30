@@ -8,6 +8,6 @@ public class Camara_follow : MonoBehaviour
 
     private void Update()
     {
-        gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.x-1, gameObject.transform.position.z);
+        gameObject.transform.position = new Vector3(target.transform.position.x, target.transform.position.y+0.5f, gameObject.transform.position.z);
     }
 }

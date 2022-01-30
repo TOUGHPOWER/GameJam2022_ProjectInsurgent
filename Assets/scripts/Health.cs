@@ -5,12 +5,14 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField] int HP = 100;
+    [SerializeField] int maxHP = 100;
     private Animator animator;
     [SerializeField] GameObject Drop;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        HP = maxHP;
     }
 
     public void modifyHP(int x)
@@ -25,13 +27,16 @@ public class Health : MonoBehaviour
                 death();
         }
 
+        if(HP > maxHP)
+            HP = maxHP;
+
         if (x < 0 && animator != null)
             animator.SetTrigger("hurt");
     }
 
     public void death()
     {
-        Instantiate(Drop, transform.position, transform.rotation);
+        Instantiate(Drop, transform);
         Destroy(gameObject);
     }
 }

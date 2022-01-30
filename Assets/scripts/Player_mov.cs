@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class Player_mov : MonoBehaviour
 {
-    [SerializeField] float      speed = 1;
+    public float      speed = 1;
     private float               currentSpeed;
     [SerializeField] float      airdrag = 1;
     [SerializeField] float      gravityNorm = -9.8f;
     [SerializeField] float      gravityFall = -10;
     private Rigidbody2D         body;
     [SerializeField] float      jumpAceleration = 1;
-    [SerializeField] float      jumpMaxSpeed = 2;
+    public float      jumpMaxSpeed = 2;
     [SerializeField] float      jumpMin = 1;
     private float               currentJumpSpeed = 0;
     private bool                chargingJump = false;
     [SerializeField] LayerMask  groundLayers;
     private BoxCollider2D       groundCheck;
     [SerializeField] bool       grounded;
-    private Animator            animationController;
+    public Animator            animationController;
+    public bool       chargjump=true;
 
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         groundCheck = GetComponent<BoxCollider2D>();
-        animationController = GetComponent<Animator>();
+        //animationController = GetComponent<Animator>();
     }
 
     private void FixedUpdate()
@@ -36,9 +37,9 @@ public class Player_mov : MonoBehaviour
 
 
         if (currentSpeed < -0.005)
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            animationController.gameObject.GetComponent<SpriteRenderer>().flipX = true;
         else if (currentSpeed > 0.005)
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            animationController.gameObject.GetComponent<SpriteRenderer>().flipX = false;
         
         body.velocity = new Vector2(currentSpeed, body.velocity.y);
 
@@ -60,8 +61,14 @@ public class Player_mov : MonoBehaviour
     {
         grounded = isGrounded();
 
-        if (Input.GetButtonDown("Jump"))
-            chargingJump = true;
+        if (Input.GetButtonDown("Jump") && grounded) 
+        {
+            if(!chargjump)
+                body.AddForce(Vector2.up * jumpMaxSpeed, ForceMode2D.Impulse);
+            else
+                chargingJump = true;
+        }
+            
 
         if (Input.GetButtonUp("Jump") && chargingJump && grounded)
         {
