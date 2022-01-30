@@ -503,6 +503,7 @@ MonoBehaviour:
   grounded: 0
   animationController: {fileID: 0}
   chargjump: 0
+  pauseMenu: {fileID: 0}
 --- !u!61 &7552215615988611488
 BoxCollider2D:
   m_ObjectHideFlags: 0
