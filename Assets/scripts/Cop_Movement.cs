@@ -35,7 +35,7 @@ public class Cop_Movement : MonoBehaviour
     private void FixedUpdate()
     {
         //verefys if it is on the ground
-        onGround = gameObject.GetComponentInChildren<DetectGroudPoint>().onGround;
+        
 
         //if it is on the ground, is going left and its position didnt pass the max point keeps the -speed else its speed becames +
         if (toTheLeft && onGround && gameObject.transform.position.x > MaxLeft && move)
