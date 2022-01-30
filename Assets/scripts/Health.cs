@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Playables;
 
 public class Health : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class Health : MonoBehaviour
     private Animator                animator;
     [SerializeField] GameObject     Drop;
     public Slider                   healthBar;
+    [SerializeField] bool           isPlayer=false;
+    public PlayableDirector         dieTimeline;
+    public GameObject               dieScreenUI;
 
     private void Start()
     {
@@ -24,7 +28,7 @@ public class Health : MonoBehaviour
 
         if (HP <= 0)
         {
-            if (animator != null)
+            if (animator != null && !isPlayer)
                 animator.SetBool("dead", true);
             else
                 death();
@@ -41,8 +45,19 @@ public class Health : MonoBehaviour
 
     public void death()
     {
-        Instantiate(Drop, transform);
-        Destroy(gameObject);
+        if (!isPlayer)
+        {
+            Instantiate(Drop, transform);
+            Destroy(gameObject);
+        }
+        else
+        {
+            dieScreenUI.SetActive(true);
+
+            dieTimeline.Play();
+
+            Time.timeScale = 0;
+        }
     }
 
     private void updateBar()

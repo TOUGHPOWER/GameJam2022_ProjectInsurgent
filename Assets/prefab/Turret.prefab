@@ -103,8 +103,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.44, y: 0.62}
+  m_Offset: {x: -0.089831695, y: 0}
+  m_Size: {x: 0.2603366, y: 0.62}
   m_Direction: 0
 --- !u!50 &2418750361611103961
 Rigidbody2D:
@@ -166,7 +166,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 0}
+  - {fileID: 2100000, guid: cfeb79666649c924fa3823a41b1edc5e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -198,7 +198,7 @@ LineRenderer:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.08804703
+        value: 0.03143692
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -258,6 +258,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   laserPos: {fileID: 2418750361815713868}
+  gunPos: {fileID: 2418750363466403116}
+  search: 1
+  Cooldown: 2
+  projectile: {fileID: 2905684207055912197, guid: 5a97c67bd4b7cdc4d9ea3c7ddaa44bef, type: 3}
 --- !u!1 &2418750361815713869
 GameObject:
   m_ObjectHideFlags: 0
@@ -282,7 +286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2418750361815713869}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.078, y: -0.01, z: 0}
+  m_LocalPosition: {x: 0.078, y: -0.01, z: 0.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2418750361611103974}

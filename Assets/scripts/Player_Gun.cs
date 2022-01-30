@@ -22,7 +22,7 @@ public class Player_Gun : MonoBehaviour
             hasShoot = false;
             inAnimation = false;
         }
-            
+
         if (Input.GetButtonDown("Fire1") && !inAnimation && !hasShoot)
         {
             if (animationController != null)

@@ -138,9 +138,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db573036fccef945baedbf3402671ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 50
   maxHP: 50
   Drop: {fileID: 0}
+  healthBar: {fileID: 0}
+  isPlayer: 1
+  dieTimeline: {fileID: 0}
+  dieScreenUI: {fileID: 0}
 --- !u!1 &1002371540
 GameObject:
   m_ObjectHideFlags: 0
@@ -309,9 +312,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2db573036fccef945baedbf3402671ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HP: 200
   maxHP: 200
   Drop: {fileID: 0}
+  healthBar: {fileID: 0}
+  isPlayer: 1
+  dieTimeline: {fileID: 0}
+  dieScreenUI: {fileID: 0}
 --- !u!1 &1894888045
 GameObject:
   m_ObjectHideFlags: 0
@@ -531,7 +537,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7552215615988611498}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: c7df75d0cbd5fa943b160a33d186827a, type: 2}
   m_CullingMode: 0

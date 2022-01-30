@@ -12,14 +12,17 @@ public class DangerZone : MonoBehaviour
     public bool                 hited;
     [SerializeField] bool       waitForAnimation = true;
 
+    private List<GameObject>    targets = new List<GameObject>();
+
+
     private void Start()
     {
         animator = GetComponent<Animator>();
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.name);
         for (int i = 0; i < hitTags.Length; i++)
         {
             if (collision.gameObject.tag == hitTags[i])
@@ -29,6 +32,11 @@ public class DangerZone : MonoBehaviour
                 else
                     hit();
                 lastObgectHit = collision.gameObject;
+
+                GameObject temp;
+                GameObject gameObject1 = targets.Find(temp => temp == collision.gameObject);
+                if (gameObject1 == null)
+                    targets.Add(collision.gameObject);
                 hited = true;
             }
         }
@@ -36,21 +44,27 @@ public class DangerZone : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.name == lastObgectHit.name)
-            lastObgectHit = null;
+        targets.Remove(collision.gameObject);
     }
+
 
     public void hit()
     {
-        if (lastObgectHit.tag == hitTags[0])
+        foreach(GameObject temp in targets)
         {
-            if(lastObgectHit.GetComponent<Health>()!= null)
-                lastObgectHit.GetComponent<Health>().modifyHP(-Damage);
-            else
-                lastObgectHit.GetComponent<Player_controller>().Hp.modifyHP(-Damage);
+            if (temp.tag == hitTags[0])
+            {
+                if (temp.GetComponent<Health>() != null)
+                    temp.GetComponent<Health>().modifyHP(-Damage);
+                else
+                    temp.GetComponent<Player_controller>().Hp.modifyHP(-Damage);
+            }
         }
+
+        
         if (DestroyOnImpact && !waitForAnimation)
             Destroy(gameObject);
+
     }
 
     public void destry()
