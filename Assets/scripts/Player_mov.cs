@@ -21,7 +21,7 @@ public class Player_mov : MonoBehaviour
     public Animator             animationController;
     public bool                 chargjump=true;
     private BoxCollider2D       wallCheck;
-
+    public GameObject           pauseMenu;
 
     private void Start()
     {
@@ -29,6 +29,7 @@ public class Player_mov : MonoBehaviour
         groundCheck = GetComponent<CircleCollider2D>();
         wallCheck = GetComponent<BoxCollider2D>();
         //animationController = GetComponent<Animator>();
+        pauseMenu.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -85,6 +86,8 @@ public class Player_mov : MonoBehaviour
         else
             body.gravityScale = gravityFall;
 
+        PauseGame();
+
     }
 
     private bool isGrounded()
@@ -97,5 +100,22 @@ public class Player_mov : MonoBehaviour
     {
         RaycastHit2D rayHit = Physics2D.BoxCast(wallCheck.bounds.center, wallCheck.bounds.size, 0f, Vector2.left, 0.1f, groundLayers);
         return rayHit.collider != null;
+    }
+
+
+    private void PauseGame()
+    {
+        if (Input.GetButtonDown("Cancel") && pauseMenu.activeSelf == false)
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+
+        }
+        else if(Input.GetButtonDown("Cancel") && pauseMenu.activeSelf == true)
+        {
+            pauseMenu.SetActive(false);
+            Time.timeScale = 1;
+        }
+        
     }
 }
