@@ -11,20 +11,23 @@ public class Player_mov : MonoBehaviour
     [SerializeField] float      gravityFall = -10;
     private Rigidbody2D         body;
     [SerializeField] float      jumpAceleration = 1;
-    public float      jumpMaxSpeed = 2;
+    public float                jumpMaxSpeed = 2;
     [SerializeField] float      jumpMin = 1;
     private float               currentJumpSpeed = 0;
     private bool                chargingJump = false;
     [SerializeField] LayerMask  groundLayers;
-    private BoxCollider2D       groundCheck;
+    private CircleCollider2D    groundCheck;
     [SerializeField] bool       grounded;
-    public Animator            animationController;
-    public bool       chargjump=true;
+    public Animator             animationController;
+    public bool                 chargjump=true;
+    private BoxCollider2D       wallCheck;
+
 
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        groundCheck = GetComponent<BoxCollider2D>();
+        groundCheck = GetComponent<CircleCollider2D>();
+        wallCheck = GetComponent<BoxCollider2D>();
         //animationController = GetComponent<Animator>();
     }
 
@@ -37,11 +40,11 @@ public class Player_mov : MonoBehaviour
 
 
         if (currentSpeed < -0.005)
-            animationController.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            gameObject.transform.eulerAngles = new Vector3(0, 180, 0);
         else if (currentSpeed > 0.005)
-            animationController.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-        
-        body.velocity = new Vector2(currentSpeed, body.velocity.y);
+            gameObject.transform.eulerAngles = new Vector3(0, 0, 0);
+        if (!isWalled())
+            body.velocity = new Vector2(currentSpeed, body.velocity.y);
 
 
         if (chargingJump)
@@ -81,11 +84,18 @@ public class Player_mov : MonoBehaviour
             body.gravityScale = gravityNorm;
         else
             body.gravityScale = gravityFall;
+
     }
 
     private bool isGrounded()
     {
-        RaycastHit2D rayHit = Physics2D.BoxCast(groundCheck.bounds.center, groundCheck.bounds.size, 0f, Vector2.down, 0.1f, groundLayers);
+        RaycastHit2D rayHit = Physics2D.CircleCast(groundCheck.bounds.center, groundCheck.radius, Vector2.down, 0.1f, groundLayers);
+        return rayHit.collider != null;
+    }
+
+    private bool isWalled()
+    {
+        RaycastHit2D rayHit = Physics2D.BoxCast(wallCheck.bounds.center, wallCheck.bounds.size, 0f, Vector2.left, 0.1f, groundLayers);
         return rayHit.collider != null;
     }
 }

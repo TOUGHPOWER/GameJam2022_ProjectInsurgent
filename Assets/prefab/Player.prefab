@@ -13,14 +13,13 @@ GameObject:
   - component: {fileID: 545324924}
   - component: {fileID: 545324922}
   - component: {fileID: 545324923}
-  - component: {fileID: 545324927}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Miranda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &545324926
 Transform:
   m_ObjectHideFlags: 0
@@ -124,8 +123,8 @@ MonoBehaviour:
   maxJump: 9
   chargeJump: 1
   Sprites: {fileID: 545324921}
-  projectalie: {fileID: 0}
-  cooldown: 1
+  projectalie: {fileID: 3559738367720846815, guid: 6028cc0026036014ba5db59b3daca8d9, type: 3}
+  cooldown: 0.25
   gunPoint: {fileID: 1894888046}
 --- !u!114 &545324923
 MonoBehaviour:
@@ -142,22 +141,6 @@ MonoBehaviour:
   HP: 50
   maxHP: 50
   Drop: {fileID: 0}
---- !u!114 &545324927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 545324921}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5b3ab12dd4092248bfc0db5fc69f545, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectalie: {fileID: 0}
-  cooldown: 1
-  gunPoint: {fileID: 0}
-  animationController: {fileID: 0}
 --- !u!1 &1002371540
 GameObject:
   m_ObjectHideFlags: 0
@@ -167,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1002371541}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gunpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -201,7 +184,7 @@ GameObject:
   - component: {fileID: 1673411986}
   - component: {fileID: 1673411985}
   - component: {fileID: 1673411984}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: SpaceSuit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -311,8 +294,8 @@ MonoBehaviour:
   maxJump: 7
   chargeJump: 0
   Sprites: {fileID: 1673411983}
-  projectalie: {fileID: 0}
-  cooldown: 5
+  projectalie: {fileID: 2981679995264032399, guid: 18c84f72b80763d4cafbb15beed0edf1, type: 3}
+  cooldown: 2
   gunPoint: {fileID: 1002371541}
 --- !u!114 &1673411984
 MonoBehaviour:
@@ -338,7 +321,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1894888046}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: gunpoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -375,9 +358,11 @@ GameObject:
   - component: {fileID: 7552215615988611488}
   - component: {fileID: 7552215615988611491}
   - component: {fileID: 1367476131}
-  m_Layer: 0
+  - component: {fileID: 3277492639142214173}
+  - component: {fileID: 2033924657}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -438,7 +423,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_Sprite: {fileID: 21300000, guid: c2c08c932c2054a0da13bc4dd9db298d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -463,8 +448,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 0.2, y: 0.47}
+  m_Offset: {x: 0, y: -0.030270338}
+  m_Size: {x: 0.2, y: 0.40945935}
   m_Direction: 0
 --- !u!50 &7552215615988611493
 Rigidbody2D:
@@ -503,9 +488,9 @@ MonoBehaviour:
   airdrag: 1
   gravityNorm: 2
   gravityFall: 4
-  jumpAceleration: 0.5
+  jumpAceleration: 0.7
   jumpMaxSpeed: 7
-  jumpMin: 5
+  jumpMin: 3
   groundLayers:
     serializedVersion: 2
     m_Bits: 64
@@ -525,7 +510,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.25}
+  m_Offset: {x: 0.09, y: -0.03}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -536,7 +521,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.08, y: 0.08}
+  m_Size: {x: 0.08, y: 0.26}
   m_EdgeRadius: 0
 --- !u!95 &7552215615988611491
 Animator:
@@ -574,3 +559,36 @@ MonoBehaviour:
   - {fileID: 1673411985}
   characterIndex: 0
   Hp: {fileID: 0}
+--- !u!58 &3277492639142214173
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7552215615988611498}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.24}
+  serializedVersion: 2
+  m_Radius: 0.04
+--- !u!114 &2033924657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7552215615988611498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5b3ab12dd4092248bfc0db5fc69f545, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectalie: {fileID: 0}
+  cooldown: 1
+  timer: 0
+  gunPoint: {fileID: 0}
+  animationController: {fileID: 0}

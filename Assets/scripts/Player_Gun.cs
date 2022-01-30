@@ -6,10 +6,11 @@ public class Player_Gun : MonoBehaviour
 {
     public GameObject projectalie;
     public float cooldown=1;
-    private float timer=0;
+    public float timer=0;
     private bool hasShoot=false;
     public Transform gunPoint;
     public Animator animationController;
+    private bool inAnimation = false;
 
     private void Update()
     {
@@ -17,12 +18,19 @@ public class Player_Gun : MonoBehaviour
             timer -= Time.deltaTime;
 
         if (timer <= 0)
+        {
             hasShoot = false;
-
-        if (Input.GetButtonDown("Fire1"))
+            inAnimation = false;
+        }
+            
+        if (Input.GetButtonDown("Fire1") && !inAnimation && !hasShoot)
         {
             if (animationController != null)
+            {
+                inAnimation = true;
                 animationController.SetTrigger("Shoot");
+            }
+                
             else
                 shootProjectile();
         }
@@ -31,6 +39,8 @@ public class Player_Gun : MonoBehaviour
     public void shootProjectile()
     {
         timer = cooldown;
-        Instantiate(projectalie, gunPoint);
+        inAnimation = false;
+        hasShoot = true;
+        Instantiate(projectalie, gunPoint.position, gunPoint.rotation);
     }
 }

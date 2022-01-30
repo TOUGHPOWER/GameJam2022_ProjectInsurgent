@@ -40,12 +40,13 @@ public class Player_controller : MonoBehaviour
         gun.gunPoint = charcters[characterIndex].gunPoint;
         gun.cooldown = charcters[characterIndex].cooldown;
         gun.animationController = charcters[characterIndex].Sprites.GetComponent<Animator>();
+        gun.timer = 0.1f;
 
     }
 
     private void Update()
     {
-        if (Input.GetButtonDown("Fire3"))
+        if (Input.GetButtonDown("Fire3") && gun.timer<=0.1)
             nextCharcater();
     }
 }
