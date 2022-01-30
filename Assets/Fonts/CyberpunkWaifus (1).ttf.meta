@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: aa9320ed18d63a741a094a4a31d07f1f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - CyberpunkWaifus
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: a261eb5e455af1d429cb9d2b57657ca0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
