@@ -24,11 +24,10 @@ public class Health : MonoBehaviour
     public void modifyHP(int x)
     {
         HP += x;
-
         if (HP <= 0)
         {
             if (animator != null && !isPlayer)
-                animator.SetBool("dead", true);
+                animator.SetTrigger("dead");
             else
                 death();
         }
@@ -46,7 +45,8 @@ public class Health : MonoBehaviour
     {
         if (!isPlayer)
         {
-            Instantiate(Drop, transform);
+            if(Drop != null)
+                Instantiate(Drop, transform);
             Destroy(gameObject);
         }
         else
@@ -63,5 +63,10 @@ public class Health : MonoBehaviour
             healthBar.value = HP;
         }
             
+    }
+
+    public bool isDead()
+    {
+        return HP < 0 ? true : false;
     }
 }

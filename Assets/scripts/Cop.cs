@@ -16,13 +16,14 @@ public class Cop : MonoBehaviour
     private bool            Shoot = false;
     public GameObject       Bullet;
     public Transform        ShootingPoint;
+    private Health          hp;
 
     // Start is called before the first frame update
     void Start()
     {
         gameObject.GetComponentInChildren<BoxCollider2D>().size = new Vector2(Range, gameObject.GetComponentInChildren<BoxCollider2D>().size.y);
-        Legs = gameObject.GetComponent<Cop_Movement>();
-
+        Legs = GetComponent<Cop_Movement>();
+        hp = GetComponent<Health>();
         timer = ShootTimer;
     }
 
@@ -30,21 +31,32 @@ public class Cop : MonoBehaviour
     void Update()
     {
         //if the player is in line of ssight and within range stops andattacks
-        if (SeePlayer && timer <= 0)
+        if (!hp.isDead())
         {
-            Legs.move = false;
-            attack();
-            timer = ShootTimer;
-        }
-        else if (!SeePlayer)
-        {
-            Legs.move = true;
-        }
+            RaycastHit2D hit2D = Physics2D.Raycast(ShootingPoint.position, gameObject.transform.right, Range);
+            if(hit2D.transform.tag == PlayerTag)
+                SeePlayer = true;
+            else
+                SeePlayer = false;
+            if (SeePlayer && timer <= 0)
+            {
+                Legs.move = false;
+                attack();
+                timer = ShootTimer;
+            }
+            else if (!SeePlayer)
+            {
+                Legs.move = true;
+                print("test");
+            }
 
-        if (timer >= 0)
-        {
-            timer -= Time.deltaTime;
+            if (timer >= 0)
+            {
+                timer -= Time.deltaTime;
+            }
         }
+        else
+            Legs.move = false;
     }
 
     //attacks if it is a range enemy it shoots if not it doers an meele attack

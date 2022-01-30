@@ -11,7 +11,6 @@ public class Cop_Movement : MonoBehaviour
     public bool                 move = true;
     public float                Speed = 10;
     public float                MaxSpeed = 100;
-    private bool                onGround = false;
     private bool                toTheLeft = true;
     private Rigidbody2D         Rb;
 
@@ -34,15 +33,12 @@ public class Cop_Movement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //verefys if it is on the ground
-        onGround = gameObject.GetComponentInChildren<DetectGroudPoint>().onGround;
-
         //if it is on the ground, is going left and its position didnt pass the max point keeps the -speed else its speed becames +
-        if (toTheLeft && onGround && gameObject.transform.position.x > MaxLeft && move)
+        if (toTheLeft && gameObject.transform.position.x > MaxLeft && move)
         {
             Rb.velocity = new Vector2(-Speed, Rb.velocity.y);
         }
-        else if (!toTheLeft && onGround && gameObject.transform.position.x < MaxRight && move)
+        else if (!toTheLeft && gameObject.transform.position.x < MaxRight && move)
         {
             Rb.velocity = new Vector2(Speed, Rb.velocity.y);
         }
