@@ -6,25 +6,13 @@ using UnityEngine.Playables;
 
 public class DeathZone : MonoBehaviour
 {
-    public PlayableDirector dieTimeline;
-    public GameObject dieScreenUI;
+    public timer tempo;
 
-    private void Start()
-    {
-        dieScreenUI.SetActive(false);
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            
-
-            dieScreenUI.SetActive(true);
-
-            
-            dieTimeline.Play();
-
-            Time.timeScale = 0;
+            tempo.loseGame();
         }
     }
 

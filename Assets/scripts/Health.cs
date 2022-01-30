@@ -12,8 +12,7 @@ public class Health : MonoBehaviour
     [SerializeField] GameObject     Drop;
     public Slider                   healthBar;
     [SerializeField] bool           isPlayer=false;
-    public PlayableDirector         dieTimeline;
-    public GameObject               dieScreenUI;
+    public timer                    tempo;
 
     private void Start()
     {
@@ -52,11 +51,7 @@ public class Health : MonoBehaviour
         }
         else
         {
-            dieScreenUI.SetActive(true);
-
-            dieTimeline.Play();
-
-            Time.timeScale = 0;
+            tempo.loseGame();
         }
     }
 
