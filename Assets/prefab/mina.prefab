@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   DestroyOnImpact: 1
-  Damage: 10
+  Damage: 30
   hitTags:
   - Player
   hited: 0
@@ -188,6 +188,8 @@ MonoBehaviour:
   maxHP: 10
   Drop: {fileID: 0}
   healthBar: {fileID: 0}
+  isPlayer: 0
+  tempo: {fileID: 0}
 --- !u!1 &5348760619894277155
 GameObject:
   m_ObjectHideFlags: 0
